@@ -41,10 +41,10 @@ bool UInventory::AddItem(AInventoryPickup* InventoryPickup)
 	if (InventoryPickup->OnAddItem(this)) 
 	{
 		int32 tIndex = ItemArray.Add(InventoryPickup); //Add to Inventory, no Duplicates
-		UE_LOG(CaptainsLog, Log, TEXT("AddItem %s %d OK"), *InventoryPickup->GetName(),tIndex); //Log Entry
+		UE_LOG(CaptainsLog, Log, TEXT("AddItem %s %d OK"), *InventoryPickup->ItemName.ToString(),tIndex); //Log Entry
 		return true;
 	}
-	UE_LOG(CaptainsLog, Log, TEXT("AddItem %s Refused"), *InventoryPickup->GetName()); //Log Entry
+	UE_LOG(CaptainsLog, Log, TEXT("AddItem %s Refused"), *InventoryPickup->ItemName.ToString()); //Log Entry
 	return false;
 }
 
@@ -53,10 +53,10 @@ bool UInventory::RemoveItem(AInventoryPickup* InventoryPickup)
 	if (InventoryPickup->OnRemoveItem(this))
 	{
 		ItemArray.Remove(InventoryPickup); //Remove from Inventory
-		UE_LOG(CaptainsLog, Log, TEXT("RemoveItem %s OK"), *InventoryPickup->GetName()); //Log Entry
+		UE_LOG(CaptainsLog, Log, TEXT("RemoveItem %s OK"), *InventoryPickup->ItemName.ToString()); //Log Entry
 		return true;
 	}
-	UE_LOG(CaptainsLog, Log, TEXT("RemoveItem %s Refused"), *InventoryPickup->GetName()); //Log Entry
+	UE_LOG(CaptainsLog, Log, TEXT("RemoveItem %s Refused"), *InventoryPickup->ItemName.ToString()); //Log Entry
 	return false;
 }
 
@@ -74,4 +74,5 @@ int32 UInventory::Count()
 {
 	return ItemArray.Num();
 }
+
 

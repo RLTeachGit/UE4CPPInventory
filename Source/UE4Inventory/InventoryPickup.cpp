@@ -15,6 +15,8 @@ AInventoryPickup::AInventoryPickup()
 	PrimaryActorTick.bCanEverTick = true;
 
 	MaxCount = 1;
+	UE_LOG(CaptainsLog, Log, TEXT("AInventoryPickup")); //Log Entry
+
 }
 
 // Called when the game starts or when spawned
@@ -33,21 +35,31 @@ void AInventoryPickup::Tick(float DeltaTime)
 
 bool AInventoryPickup::OnAddItem_Implementation(UInventory* Inventory)
 {
-	if (IsValid(Inventory) && (Inventory->SameItemCount(this) < MaxCount))
-	{
-		UE_LOG(CaptainsLog, Log, TEXT("Default OnAddItem_Implementation %s OK"), *Inventory->GetName()); //Log Entry
-		return true;
-	}
-	UE_LOG(CaptainsLog, Log, TEXT("Default OnAddItem_Implementation %s Refused"), *Inventory->GetName()); //Log Entry
-	return false;
+	return	CanCarry(Inventory);
 }
+
+bool AInventoryPickup::CanCarry(UInventory* Inventory)
+{
+	//You can pick up, if MaxCount<0 any amount else the amount in MaxCount
+	return (IsValid(Inventory) && ((MaxCount < 0) || (Inventory->SameItemCount(this) < MaxCount)));
+}
+
 
 bool AInventoryPickup::OnRemoveItem_Implementation(UInventory* Inventory)
 {
-	if (IsValid(Inventory))
-	{
-		UE_LOG(CaptainsLog, Log, TEXT("Default OnAddRemove_Implementation %s OK"), *Inventory->GetName()); //Log Entry
-	}
-	return true;
+	return (IsValid(Inventory)); //Allow Removal
 }
+
+void AInventoryPickup::Hide(bool Hide)
+{
+
+	SetActorHiddenInGame(Hide);
+
+	SetActorEnableCollision(!Hide);
+
+	SetActorTickEnabled(!Hide);
+}
+
+
+
 

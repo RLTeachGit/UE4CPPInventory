@@ -39,4 +39,14 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadonly, Category = Inventory)
 	int32	MaxCount;
 
+	UPROPERTY(EditAnywhere, BlueprintReadonly, Category = Inventory)
+	FText	ItemName;
+
+	UFUNCTION(BlueprintCallable, Category = Inventory)
+	void	Hide(bool Hide);
+
+	UFUNCTION(BlueprintCallable,BlueprintPure, Category = Inventory)
+	bool	CanCarry(UInventory* Inventory);
+
+
 };

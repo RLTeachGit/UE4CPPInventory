@@ -38,10 +38,12 @@ public:
 	UPROPERTY(BlueprintReadOnly)
 	TArray<class AInventoryPickup*> ItemArray;
 
-	UFUNCTION(BlueprintCallable, Category = Inventory)
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = Inventory)
 	int32	SameItemCount(class AInventoryPickup* InventoryPickup);
 
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = Inventory)
 	int32	Count(); //How many items
+
+
 
 };
