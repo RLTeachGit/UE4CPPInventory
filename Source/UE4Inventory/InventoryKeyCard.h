@@ -28,6 +28,9 @@ public:
 	struct FLinearColor Colour;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Inventory)
+	struct FLinearColor Colour1;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Inventory)
 	class	UMaterial* BaseMaterial;
 
 	UPROPERTY()

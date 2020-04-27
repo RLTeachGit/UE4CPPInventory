@@ -30,6 +30,8 @@ void AInventoryKeyCard::OnConstruction(const FTransform& Transform)
 		if (IsValid(DynMatInstance))
 		{
 			DynMatInstance->SetVectorParameterValue("Base Color", Colour); //Set Colour
+			DynMatInstance->SetVectorParameterValue("GlowColour", Colour1); //Set Second Colour
+
 			tMesh->SetMaterial(0, DynMatInstance);	//Set Material in mesh
 		}
 		else
